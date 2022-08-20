@@ -21,11 +21,12 @@ public class ListaDeCompra {
 		lista = new ArrayList<>(Files.readAllLines(Paths.get(filename)));
 	}
 	
-	public String obtenerElemento(int indice) {
+	public String obtenerElemento(int indice) throws PositionException {
 		if( indice <= lista.size())
-			return lista.get(indice);
+			return lista.get(indice - 1);
 		
-		return "Elemento no encontrado";
+		PositionException position = new PositionException("Posición fuera de los limites de la lista.");
+		throw position;
 	}
 	
 	public void insertarElemento(String elemento) throws IOException {
@@ -35,7 +36,10 @@ public class ListaDeCompra {
 			out = new BufferedWriter(fstream);
 			out.write("\n" + elemento);
 			cargarLista(archivo);
-		} finally {
+		}catch(IOException e) {
+			e.printStackTrace();
+			throw e;
+		}finally {
 			if(out != null)
 				out.close();
 		}

@@ -49,7 +49,12 @@ public class Interfaz {
 	}
 
 	private void mostrarElemento(int indice) {
-		System.out.println("El elemento número "+ indice + " de la lista es: "+ listaDeCompra.obtenerElemento(indice));
+		try {
+			System.out.println("El elemento número "+ indice + " de la lista es: "+ listaDeCompra.obtenerElemento(indice));
+		} catch (PositionException e) {
+			e.printStackTrace();
+			System.out.println(e.getMessage());
+		}
 	}
 	
 }

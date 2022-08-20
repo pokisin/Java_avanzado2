@@ -1,2 +1,4 @@
 .classpath
 .project
+*.class
+01_manejo_exceptions/bin/*
